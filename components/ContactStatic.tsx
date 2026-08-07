@@ -96,7 +96,7 @@ NK Financial Consultancy
             <div className="max-w-6xl mx-auto px-4 relative z-10">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl font-bold text-neutral-900 tracking-tight mb-4">
-                        Let's Secure Your Future
+                        Let&apos;s Secure Your Future
                     </h2>
                     <p className="text-neutral-600 text-sm max-w-xl mx-auto">
                         Get in touch for personalized financial guidance. We respond to all inquiries within 24 hours.

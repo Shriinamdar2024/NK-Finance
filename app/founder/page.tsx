@@ -6,10 +6,8 @@ import Footer from "@/components/Footer";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { 
   Quote, 
-  MapPin, 
   MessageSquare, 
   Phone, 
-  Award,
   CheckCircle2,
   Calendar
 } from "lucide-react";
@@ -139,7 +137,7 @@ export default function FounderPage() {
           <ScrollReveal>
             <Quote className="w-16 h-16 text-amber-500/40 mx-auto mb-8" />
             <h2 className="text-3xl sm:text-5xl font-serif font-medium leading-snug italic mb-10">
-              "I started NK Financial because I saw too many people getting the wrong advice or no advice at all. Every client deserves clarity, honesty, and a plan that actually works for them."
+              &quot;I started NK Financial because I saw too many people getting the wrong advice or no advice at all. Every client deserves clarity, honesty, and a plan that actually works for them.&quot;
             </h2>
             <div className="flex items-center justify-center gap-3">
               <div className="w-12 h-px bg-amber-500/50" />
