@@ -12,6 +12,7 @@ import {
   Calendar
 } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function FounderPage() {
   return (
@@ -28,12 +29,13 @@ export default function FounderPage() {
           {/* Left Side: Photo & Floating Badges */}
           <div className="lg:col-span-5 relative">
             <ScrollReveal direction="left" delay={0.1}>
-              <div className="relative z-10 rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] border-[8px] border-white">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+              <div className="relative z-10 w-full h-[400px] md:h-[450px] lg:h-[550px] max-h-[70vh] rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] border-[8px] border-white">
+                <Image
                   src="/foundernkc.png"
                   alt="Niranjan Khandekar"
-                  className="w-full h-[600px] object-cover object-top"
+                  fill
+                  className="object-cover object-top"
+                  priority
                 />
 
                 {/* Image Overlay Gradient */}
@@ -76,7 +78,7 @@ export default function FounderPage() {
 
               <div className="space-y-6 text-neutral-600 text-lg leading-relaxed mb-12">
                 <p>
-                  With over 8 years of dedicated experience in the Indian financial services sector, Niranjan Khandekar established NK Financial Consultancy with a singular, unwavering mission: to democratize access to honest, expert financial guidance for everyone.
+                  With over 4 years of dedicated experience in the Indian financial services sector, Niranjan Khandekar established NK Financial Consultancy with a singular, unwavering mission: to democratize access to honest, expert financial guidance for everyone.
                 </p>
                 <p>
                   He has successfully helped hundreds of individuals and business owners achieve their financial aspirations. From securing complex business loans to structuring resilient investment portfolios, his deep expertise spans the entire spectrum of wealth and debt management.
