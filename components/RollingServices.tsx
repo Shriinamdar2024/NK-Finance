@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { IndianRupee, Sparkles } from "lucide-react";
+import Link from "next/link";
 
 const services = [
   {
@@ -228,10 +229,10 @@ export default function RollingServices() {
           </div>
 
           {/* Mobile Button CTA */}
-          <div className="flex md:hidden flex-row justify-center items-center px-[12px] py-[4px] gap-[10px] h-[20px] bg-white rounded-[6px] cursor-pointer shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+          <Link href="/services" className="flex md:hidden flex-row justify-center items-center px-[12px] py-[4px] gap-[10px] h-[20px] bg-white rounded-[6px] cursor-pointer shadow-[0_0_30px_rgba(0,0,0,0.5)]">
             <span className="font-semibold text-[10px] leading-[12px] text-black whitespace-nowrap">Explore all services</span>
             <Sparkles className="w-[10px] h-[10px] text-black" />
-          </div>
+          </Link>
 
         </div>
 
@@ -258,10 +259,10 @@ export default function RollingServices() {
 
       {/* Explore Services Button */}
       <div className="hidden md:block absolute bottom-10 left-1/2 -translate-x-1/2 z-30">
-        <button className="flex items-center gap-2 bg-white hover:bg-gray-100 text-black px-6 py-3 md:px-8 md:py-3.5 rounded-[6px] md:rounded-[16px] text-sm md:text-base font-semibold transition-all shadow-[0_0_30px_rgba(0,0,0,0.5)] hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:scale-105 active:scale-95 group">
+        <Link href="/services" className="flex items-center gap-2 bg-white hover:bg-gray-100 text-black px-6 py-3 md:px-8 md:py-3.5 rounded-[6px] md:rounded-[16px] text-sm md:text-base font-semibold transition-all shadow-[0_0_30px_rgba(0,0,0,0.5)] hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:scale-105 active:scale-95 group">
           <span>Explore all services</span>
           <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-black" />
-        </button>
+        </Link>
       </div>
 
     </section>
