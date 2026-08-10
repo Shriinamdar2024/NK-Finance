@@ -24,11 +24,11 @@ async function appendToGoogleSheet(data: any) {
 
         const sheets = google.sheets({ auth, version: 'v4' });
         const spreadsheetId = process.env.GOOGLE_SHEET_ID;
-        
+
         // Get current month and year for the sheet name (e.g., "August 2026")
         const date = new Date();
         const sheetName = date.toLocaleString('default', { month: 'long', year: 'numeric' });
-        
+
         // Check if the sheet exists
         const spreadsheet = await sheets.spreadsheets.get({ spreadsheetId });
         const sheetExists = spreadsheet.data.sheets?.some(s => s.properties?.title === sheetName);
@@ -68,7 +68,7 @@ async function appendToGoogleSheet(data: any) {
                 ]]
             }
         });
-        
+
         console.log("Successfully appended to Google Sheet");
     } catch (error) {
         console.error("Google Sheets Error:", error);
@@ -117,23 +117,15 @@ export async function POST(req: Request) {
                 </div>
             `,
         };
-        
-        // 2. Customer Auto-Reply Email
+
+        // 2. Customer Auto-Reply Email (Pure Plain Text to avoid Spam filters)
         const customerMailOptions = {
-            from: `NK Financial <${process.env.EMAIL_USER}>`,
+            from: `"NK Financial" <${process.env.EMAIL_USER}>`,
             to: email,
             subject: `Request Received - NK Financial`,
-            html: `
-                <div style="font-family: Arial, sans-serif; max-width: 600px; padding: 20px; color: #333;">
-                    <h2>Hi ${name},</h2>
-                    <p>Thank you for reaching out to NK Financial. We have received your request regarding <strong>${service}</strong>.</p>
-                    <p>Niranjan or a member of our team will contact you shortly at ${phone} to discuss how we can help you achieve your financial goals.</p>
-                    <br/>
-                    <p>Best regards,<br/><strong>NK Financial Team</strong></p>
-                </div>
-            `,
+            text: `Hi ${name},\n\nThank you for reaching out to NK Financial. We have received your request regarding ${service}.\n\nNiranjan or a member of our team will contact you shortly at ${phone} to discuss how we can help you achieve your financial goals.\n\nBest regards,\nNK Financial Team`,
         };
-        
+
         // Send emails
         await Promise.all([
             transporter.sendMail(ownerMailOptions),
@@ -144,8 +136,8 @@ export async function POST(req: Request) {
         await appendToGoogleSheet({ name, email, phone, service });
 
         return NextResponse.json({ success: true, message: 'Form submitted successfully' });
-        } catch (error) {
-            console.error('Nodemailer Error:', error);
-            return NextResponse.json({ success: false, error: 'Failed to send emails' }, { status: 500 });
-        }
+    } catch (error) {
+        console.error('Nodemailer Error:', error);
+        return NextResponse.json({ success: false, error: 'Failed to send emails' }, { status: 500 });
     }
+}
