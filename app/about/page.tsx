@@ -93,7 +93,7 @@ export default function AboutPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10" />
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=800&auto=format&fit=crop"
+                  src="/image.png"
                   alt="Financial Expertise"
                   className="w-full h-[400px] object-cover"
                 />

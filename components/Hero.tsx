@@ -25,13 +25,13 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 max-w-5xl mx-auto mt-20">
+      <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 max-w-5xl mx-auto mt-24 md:mt-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 tracking-tight leading-tight mb-6">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold text-slate-900 tracking-tight leading-[1.1] mb-6">
             Empowering Your <br className="hidden md:block" />
             Financial Future
           </h1>
@@ -42,7 +42,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
         >
-          <p className="text-lg md:text-xl text-slate-700 max-w-2xl mb-10 leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-slate-700 max-w-2xl mb-10 leading-relaxed px-2">
             Trusted consultancy and solutions for personal loans, business loans, insurance, and investments. Tailored precisely for your goals.
           </p>
         </motion.div>
@@ -51,11 +51,11 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-          className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
+          className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto px-4 sm:px-0"
         >
           <Link
             href="/founder"
-            className="px-8 py-4 rounded-full bg-black hover:bg-neutral-800 text-white font-semibold text-base transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-center"
+            className="w-full sm:w-auto px-8 py-4 rounded-2xl sm:rounded-full bg-black hover:bg-neutral-800 text-white font-semibold text-base transition-all duration-300 shadow-xl shadow-black/10 hover:shadow-2xl hover:-translate-y-1 text-center"
           >
             Meet Our Founder
           </Link>
@@ -63,10 +63,10 @@ export default function Hero() {
             href="https://wa.me/919373061520"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-8 py-4 rounded-full bg-neutral-200 hover:bg-neutral-300 text-black font-semibold text-base transition-all duration-300 shadow-sm hover:shadow-md flex items-center justify-center gap-2 group hover:-translate-y-0.5"
+            className="w-full sm:w-auto px-8 py-4 rounded-2xl sm:rounded-full bg-white/80 hover:bg-white backdrop-blur-sm border border-neutral-200/50 text-black font-semibold text-base transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2 group hover:-translate-y-1"
           >
             <span>Free Consultation</span>
-            <ArrowUpRight className="w-4 h-4 text-neutral-600 group-hover:text-black transition-colors" />
+            <ArrowUpRight className="w-5 h-5 text-neutral-600 group-hover:text-black transition-colors" />
           </a>
         </motion.div>
       </div>

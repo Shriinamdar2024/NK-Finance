@@ -17,63 +17,24 @@ export default function ContactStatic() {
         e.preventDefault();
         setStatus("submitting");
 
-        // Custom template for the email sent to Niranjan
-        const ownerMessage = `
-NEW LEAD ALERT!
-
-You have received a new consultation request from your website.
-
-Customer Details:
------------------------------------------
-Name: ${formData.name}
-Phone: ${formData.phone}
-Email: ${formData.email}
-Service Required: ${formData.service}
------------------------------------------
-
-Action Required: Please reach out to them as soon as possible.
-        `.trim();
-
-        // Custom auto-reply sent to the customer
-        const autoReplyMessage = `
-Hello ${formData.name},
-
-Thank you for reaching out to NK Financial Consultancy! 
-
-I have received your request regarding ${formData.service} and I will personally reach out to you soon to discuss how we can secure your financial future.
-
-If your request is urgent, please feel free to call me directly at +91 9373061520 or visit our office at:
-Shop No- 5, Raghunath Bhuvan, Overseer Colony, Near Shiv Shakti Mandal, SANGLI.
-
-Your Financial Growth, Our Responsibility.
-
-Best Regards,
-Niranjan Khandekar
-Founder & Principal Advisor
-NK Financial Consultancy
-        `.trim();
-
         try {
-            // Send the form data to Web3Forms API in the background
-            const response = await fetch("https://api.web3forms.com/submit", {
+            // Call our custom Nodemailer API
+            const response = await fetch("/api/contact", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    Accept: "application/json",
                 },
                 body: JSON.stringify({
-                    // IMPORTANT: Replace this dummy key with your free key from web3forms.com in .env.local
-                    access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HERE",
-                    subject: `Website Lead: ${formData.name} - ${formData.service}`,
-                    from_name: "NK Financial Website",
                     name: formData.name,
-                    email: formData.email, // Required for autoresponse
-                    message: ownerMessage,
-                    autoresponse: autoReplyMessage,
-                }),
+                    email: formData.email,
+                    phone: formData.phone,
+                    service: formData.service
+                })
             });
 
             const result = await response.json();
+            console.log("Mail API Response:", result);
+            
             if (result.success) {
                 setStatus("success");
                 setFormData({ name: "", phone: "", email: "", service: "Personal Loan" });
@@ -81,6 +42,7 @@ NK Financial Consultancy
                 // Reset success message after 5 seconds
                 setTimeout(() => setStatus("idle"), 5000);
             } else {
+                console.error("API Error:", result);
                 setStatus("error");
             }
         } catch (error) {
@@ -89,7 +51,7 @@ NK Financial Consultancy
     };
 
     return (
-        <section id="contact" className="py-24 relative overflow-hidden bg-[#FDFBF7]">
+        <section id="contact" className="py-16 md:py-24 relative overflow-hidden bg-[#FDFBF7]">
             {/* Subtle Background Glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber-500/5 blur-[120px] rounded-full pointer-events-none" />
 
@@ -107,7 +69,7 @@ NK Financial Consultancy
 
                     {/* Left Side: Direct Contact Info */}
                     <div className="space-y-6">
-                        <div className="p-8 rounded-3xl bg-white border border-neutral-200 shadow-sm">
+                        <div className="p-6 md:p-8 rounded-3xl bg-white border border-neutral-200 shadow-sm">
                             <h3 className="text-2xl font-bold text-neutral-900 mb-2">Niranjan Khandekar</h3>
                             <p className="text-neutral-500 text-sm font-medium mb-8">NK Financial Consultancy</p>
 
@@ -160,7 +122,7 @@ NK Financial Consultancy
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="p-8 sm:p-10 rounded-3xl bg-white border border-neutral-200 shadow-xl relative overflow-hidden"
+                        className="p-6 md:p-10 rounded-3xl bg-white border border-neutral-200 shadow-xl relative overflow-hidden"
                     >
                         {status === "success" && (
                             <div className="absolute inset-0 z-20 bg-white/90 backdrop-blur-sm flex flex-col items-center justify-center p-8 text-center animate-in fade-in duration-500">

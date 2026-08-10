@@ -8,6 +8,7 @@ const services = [
   {
     id: "loans",
     title: "Loans & Credit",
+    mobileTitle: "Secure loans & credit",
     leftText: (
       <>
         Tailored credit solutions mapping your <strong>unique financial needs</strong>.
@@ -22,6 +23,7 @@ const services = [
   {
     id: "quick",
     title: "Quick Processing",
+    mobileTitle: "Experience quick processing",
     leftText: (
       <>
         Experience <strong>seamless approvals</strong> with our digital-first approach.
@@ -36,6 +38,7 @@ const services = [
   {
     id: "insurance",
     title: "Insurance",
+    mobileTitle: "Get comprehensive insurance",
     leftText: (
       <>
         <strong>Comprehensive coverage</strong> to protect everything you've built.
@@ -50,6 +53,7 @@ const services = [
   {
     id: "investments",
     title: "Investments",
+    mobileTitle: "Grow their investments",
     leftText: (
       <>
         Grow your wealth systematically with <strong>market-linked instruments</strong>.
@@ -64,6 +68,7 @@ const services = [
   {
     id: "planning",
     title: "Financial Planning",
+    mobileTitle: "Master financial planning",
     leftText: (
       <>
         <strong>End-to-end advisory</strong> mapping your financial life journey.
@@ -92,22 +97,22 @@ export default function RollingServices() {
       setActiveIndex((prev) => prev + 1);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [activeIndex]); // Dependency resets timer on manual click
 
   const actualIndex = activeIndex % services.length;
 
   return (
-    <section className="relative w-full h-screen min-h-[700px] bg-[#1a1111] overflow-hidden flex items-center justify-center pb-10">
+    <section className="relative w-full h-[320px] md:h-screen min-h-[320px] md:min-h-[700px] bg-[#1a1111] overflow-hidden flex flex-col md:flex-row items-center justify-center py-[40px] px-[20px] md:p-0 md:pb-10">
       {/* Background SVG */}
       <div
         className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat opacity-90"
         style={{ backgroundImage: "url('/bg.svg')" }}
       />
 
-      {/* Dark overlay for text readability */}
-      <div className="absolute inset-0 bg-black/40 mix-blend-overlay" />
+      {/* Dark overlay for text readability - Desktop only */}
+      <div className="absolute inset-0 bg-black/40 mix-blend-overlay hidden md:block" />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 items-center h-full">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-0 md:px-6 flex flex-col md:grid md:grid-cols-12 gap-[20px] md:gap-8 items-center justify-center h-full">
 
         {/* Left Text */}
         <div className="hidden md:flex flex-col justify-center h-full col-span-3">
@@ -127,19 +132,24 @@ export default function RollingServices() {
         </div>
 
         {/* Center Column - Flat Infinite Scroll with Fade Mask */}
-        <div className="relative h-full flex flex-col justify-center items-center col-span-1 md:col-span-6 overflow-visible">
+        <div className="relative h-full flex flex-col justify-center items-center col-span-1 md:col-span-6 overflow-visible w-full gap-[20px] md:gap-0">
+
+          {/* Top Label - Mobile Only */}
+          <div className="flex md:hidden flex-row items-center justify-start gap-[10px] w-[344px] h-[12px] pl-[24px]">
+            <span className="font-['Poppins'] font-normal text-[10px] leading-[12px] text-white/80">NK Financial helps enterprises</span>
+          </div>
 
           {/* Centered Flex Container mapping the Icon and Text side-by-side */}
-          <div className="flex items-center gap-4 md:gap-6 w-fit mx-auto">
+          <div className="flex items-center justify-center md:justify-start gap-0 md:gap-6 w-full md:w-fit mx-auto h-[168px] md:h-auto">
 
-            {/* Fixed Icon */}
-            <div className="shrink-0 flex items-center justify-center h-[80px]">
+            {/* Fixed Icon - Desktop only */}
+            <div className="hidden md:flex shrink-0 items-center justify-center h-[80px]">
               <IndianRupee className="w-8 h-8 md:w-10 md:h-10 text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.8)]" />
             </div>
 
-            {/* Masked Viewport */}
+            {/* Desktop Viewport */}
             <div
-              className="relative h-[400px] overflow-hidden"
+              className="hidden md:block relative h-[400px] overflow-hidden w-auto"
               style={{
                 WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%)',
                 maskImage: 'linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%)'
@@ -147,11 +157,9 @@ export default function RollingServices() {
             >
               <motion.div
                 className="flex flex-col"
-                // 160px offsets the top so the active item (80px tall) is perfectly centered at 200px
                 animate={{ y: 160 - (activeIndex * ITEM_HEIGHT) }}
                 transition={isSnapping ? { duration: 0 } : { type: "spring", stiffness: 300, damping: 30 }}
                 onAnimationComplete={() => {
-                  // Infinite loop logic: When we reach the start of the 3rd block, seamlessly snap back to the 2nd block
                   if (activeIndex >= services.length * 2) {
                     setIsSnapping(true);
                     setActiveIndex(activeIndex - services.length);
@@ -161,14 +169,13 @@ export default function RollingServices() {
               >
                 {extendedServices.map((service, index) => {
                   const isActive = index === activeIndex;
-
                   return (
                     <div
-                      key={`${service.id}-${index}`}
-                      className="h-[80px] flex items-center shrink-0 whitespace-nowrap pr-2"
+                      key={`${service.id}-${index}-desktop`}
+                      onClick={() => setActiveIndex(index)}
+                      className="h-[80px] flex items-center justify-start shrink-0 whitespace-nowrap pr-2 cursor-pointer group"
                     >
-                      <h3 className={`font-semibold text-3xl md:text-[2.5rem] tracking-tight transition-colors duration-500 ${isActive ? "text-white" : "text-white/40"
-                        }`}>
+                      <h3 className={`font-semibold text-[2.5rem] tracking-tight transition-all duration-500 ${isActive ? "text-white" : "text-white/40 group-hover:text-white/60"}`}>
                         {service.title}
                       </h3>
                     </div>
@@ -177,6 +184,53 @@ export default function RollingServices() {
               </motion.div>
             </div>
 
+            {/* Mobile Viewport */}
+            <div className="md:hidden flex flex-row items-center justify-center h-[168px] w-full gap-[12px]">
+              
+              {/* Fixed Stationary Icon */}
+              <div className="w-[12px] flex items-center justify-center shrink-0">
+                <IndianRupee className="w-[12px] h-[12px] text-[#F7F3E4]" />
+              </div>
+
+              {/* Rolling Text Container */}
+              <div className="relative h-[168px] overflow-hidden w-[320px]">
+                <motion.div
+                  className="flex flex-col w-full"
+                  animate={{ y: (168 / 2) - 16 - (activeIndex * 32) }}
+                  transition={isSnapping ? { duration: 0 } : { type: "spring", stiffness: 300, damping: 30 }}
+                  onAnimationComplete={() => {
+                    if (activeIndex >= services.length * 2) {
+                      setIsSnapping(true);
+                      setActiveIndex(activeIndex - services.length);
+                      setTimeout(() => setIsSnapping(false), 50);
+                    }
+                  }}
+                >
+                  {extendedServices.map((service, index) => {
+                    const isActive = index === activeIndex;
+                    return (
+                      <div
+                        key={`${service.id}-${index}-mobile`}
+                        onClick={() => setActiveIndex(index)}
+                        className="h-[32px] flex flex-row items-center justify-start shrink-0 whitespace-nowrap cursor-pointer"
+                      >
+                        <h3 className={`font-['Poppins'] font-medium text-[20px] leading-[24px] tracking-[-0.383px] transition-all duration-300 ${isActive ? "text-[#F7F3E4]" : "text-white/40"}`}>
+                          {service.mobileTitle || service.title}
+                        </h3>
+                      </div>
+                    );
+                  })}
+                </motion.div>
+              </div>
+
+            </div>
+
+          </div>
+
+          {/* Mobile Button CTA */}
+          <div className="flex md:hidden flex-row justify-center items-center px-[12px] py-[4px] gap-[10px] h-[20px] bg-white rounded-[6px] cursor-pointer shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+            <span className="font-semibold text-[10px] leading-[12px] text-black whitespace-nowrap">Explore all services</span>
+            <Sparkles className="w-[10px] h-[10px] text-black" />
           </div>
 
         </div>
@@ -198,26 +252,12 @@ export default function RollingServices() {
           </AnimatePresence>
         </div>
 
-        {/* Mobile Text view - only shows on small screens */}
-        <div className="md:hidden flex flex-col col-span-1 absolute bottom-36 left-6 right-6 h-48 pointer-events-none">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={`mobile-${actualIndex}`}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.4 }}
-            >
-              <p className="text-white/90 font-medium mb-3 text-lg">{services[actualIndex].leftText}</p>
-              <p className="text-white/60 text-sm leading-relaxed">{services[actualIndex].rightText}</p>
-            </motion.div>
-          </AnimatePresence>
-        </div>
+
 
       </div>
 
       {/* Explore Services Button */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30">
+      <div className="hidden md:block absolute bottom-10 left-1/2 -translate-x-1/2 z-30">
         <button className="flex items-center gap-2 bg-white hover:bg-gray-100 text-black px-6 py-3 md:px-8 md:py-3.5 rounded-[6px] md:rounded-[16px] text-sm md:text-base font-semibold transition-all shadow-[0_0_30px_rgba(0,0,0,0.5)] hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:scale-105 active:scale-95 group">
           <span>Explore all services</span>
           <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-black" />

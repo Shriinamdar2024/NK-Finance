@@ -36,12 +36,12 @@ export default function WhyChooseUs() {
             </p>
 
             {/* Quote card */}
-            <div className="p-6 rounded-3xl bg-white border border-neutral-200 shadow-sm mb-8">
-              <div className="text-3xl text-neutral-300 font-serif leading-none mb-2">&ldquo;</div>
-              <p className="text-neutral-800 font-medium text-sm leading-relaxed italic">
+            <div className="p-6 md:p-8 rounded-3xl bg-gradient-to-br from-white to-neutral-50 border border-neutral-200 shadow-md mb-8 relative overflow-hidden">
+              <div className="absolute -top-4 -left-2 text-8xl text-neutral-100/60 font-serif leading-none select-none">&ldquo;</div>
+              <p className="relative z-10 text-neutral-800 font-medium text-sm md:text-base leading-relaxed italic">
                 Your Financial Growth, Our Responsibility. We don&apos;t just advise — we partner with you on every step of the journey.
               </p>
-              <p className="text-neutral-500 text-xs font-semibold mt-4">— Niranjan Khandekar, Founder</p>
+              <p className="relative z-10 text-amber-600 text-xs md:text-sm font-bold mt-4 tracking-wide uppercase">— Niranjan Khandekar, Founder</p>
             </div>
 
             <Link
@@ -54,12 +54,12 @@ export default function WhyChooseUs() {
           </ScrollReveal>
 
           {/* Right: Benefits List */}
-          <div className="flex-1 space-y-3 w-full">
+          <div className="flex-1 space-y-3 sm:space-y-4 w-full">
             {benefits.map((benefit, index) => (
               <ScrollReveal key={benefit.title} delay={index * 0.08} direction="right">
-                <div className="flex items-start gap-4 p-5 rounded-2xl bg-white border border-neutral-100 shadow-sm hover:border-neutral-300 hover:shadow-md transition-all duration-300 group">
-                  <div className="mt-0.5 w-8 h-8 rounded-xl bg-neutral-100 border border-neutral-200 flex items-center justify-center flex-shrink-0">
-                    <CheckCircle2 className="w-4 h-4 text-neutral-700" />
+                <div className="flex items-start gap-3 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-white/80 backdrop-blur-sm border border-neutral-100 shadow-sm hover:border-amber-200 hover:shadow-md transition-all duration-300 group">
+                  <div className="mt-0.5 w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                    <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-amber-600" />
                   </div>
                   <div>
                     <p className="text-sm font-bold text-neutral-900 mb-0.5">{benefit.title}</p>

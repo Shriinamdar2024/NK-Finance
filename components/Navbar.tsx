@@ -90,41 +90,57 @@ export default function Navbar() {
         </motion.nav>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Full-Screen Overlay */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
             key="mobile-menu"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-            className="fixed top-[72px] inset-x-0 z-40 p-4 bg-[#FDFBF7] border-b border-slate-200 shadow-xl md:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl md:hidden flex flex-col pt-[88px] px-6 pb-6 overflow-y-auto"
           >
-            <div className="flex flex-col gap-2">
-              <Link href="/" className={`p-3 rounded-lg text-base font-medium transition-colors ${pathname === "/" ? "text-slate-900 bg-slate-100" : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"}`}>
-                Home
-              </Link>
-              {navLinks.map((link) => (
-                <Link
+            <div className="flex flex-col gap-6 mt-8">
+              {[
+                { label: "Home", href: "/" },
+                ...navLinks
+              ].map((link, i) => (
+                <motion.div
                   key={link.href}
-                  href={link.href}
-                  className={`p-3 rounded-lg text-base font-medium transition-colors ${pathname === link.href ? "text-slate-900 bg-slate-100" : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"}`}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.3, delay: i * 0.1, ease: "easeOut" }}
                 >
-                  {link.label}
-                </Link>
+                  <Link
+                    href={link.href}
+                    className={`block text-3xl font-bold tracking-tight transition-colors ${
+                      pathname === link.href ? "text-amber-500" : "text-slate-900 hover:text-amber-500"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
               ))}
-              <div className="mt-4">
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.3, delay: 0.3, ease: "easeOut" }}
+                className="mt-8 pt-8 border-t border-slate-200"
+              >
                 <a
                   href="https://wa.me/919373061520"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full py-3 rounded-lg bg-black hover:bg-neutral-800 text-white font-medium text-base transition-colors shadow-md"
+                  className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl bg-black hover:bg-neutral-800 text-white font-semibold text-lg transition-all shadow-xl hover:shadow-2xl active:scale-95"
                 >
-                  <Phone className="w-4 h-4" />
+                  <Phone className="w-5 h-5" />
                   Free Consultation
                 </a>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         )}

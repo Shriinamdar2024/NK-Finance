@@ -60,16 +60,16 @@ export default function StatsSection() {
           </h2>
         </ScrollReveal>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
           {stats.map((stat, i) => {
             const Icon = stat.icon;
             return (
               <ScrollReveal key={stat.label} delay={i * 0.1}>
-                <div className={`p-6 rounded-3xl border text-center group hover:scale-[1.03] transition-transform duration-300 shadow-sm bg-white ${stat.bg.split(' ')[1]}`}>
-                  <div className={`w-12 h-12 rounded-2xl border flex items-center justify-center mx-auto mb-4 ${stat.bg}`}>
-                    <Icon className={`w-5 h-5 ${stat.color}`} />
+                <div className={`p-4 sm:p-6 rounded-[20px] sm:rounded-3xl border text-center group hover:scale-[1.03] transition-transform duration-300 shadow-sm bg-white ${stat.bg.split(' ')[1]}`}>
+                  <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl border flex items-center justify-center mx-auto mb-3 sm:mb-4 ${stat.bg}`}>
+                    <Icon className={`w-4 h-4 sm:w-5 sm:h-5 ${stat.color}`} />
                   </div>
-                  <p className={`text-3xl sm:text-4xl font-extrabold mb-1 ${stat.color}`}>
+                  <p className={`text-2xl sm:text-3xl lg:text-4xl font-extrabold mb-1 ${stat.color}`}>
                     <StatCounter
                       target={stat.target}
                       prefix={stat.prefix ?? ""}
@@ -77,7 +77,7 @@ export default function StatsSection() {
                       duration={2.2}
                     />
                   </p>
-                  <p className="text-xs text-neutral-600 font-medium">{stat.label}</p>
+                  <p className="text-[10px] sm:text-xs text-neutral-600 font-bold uppercase tracking-wider">{stat.label}</p>
                 </div>
               </ScrollReveal>
             );

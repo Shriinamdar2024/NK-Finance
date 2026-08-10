@@ -50,7 +50,7 @@ export default function ServicesPage() {
       <Navbar />
 
       {/* ── Page Hero ── */}
-      <section className="relative pt-36 pb-16 overflow-hidden">
+      <section className="relative pt-28 md:pt-36 pb-12 md:pb-16 overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <ScrollReveal>
@@ -74,7 +74,7 @@ export default function ServicesPage() {
             const Icon = service.icon;
             return (
               <ScrollReveal key={service.title} delay={idx * 0.1}>
-                <div className="p-8 md:p-10 rounded-[2rem] bg-white border border-neutral-200 hover:border-amber-400 shadow-sm hover:shadow-lg transition-all text-center h-full group flex flex-col items-center">
+                <div className="p-6 md:p-10 rounded-3xl md:rounded-[2rem] bg-white border border-neutral-200 hover:border-amber-400 shadow-sm hover:shadow-lg transition-all text-center h-full group flex flex-col items-center">
                   <div className="w-20 h-20 rounded-full bg-black flex items-center justify-center mb-8 group-hover:-translate-y-2 transition-transform duration-300 shadow-[0_0_20px_rgba(245,158,11,0.2)] border-2 border-amber-500">
                     <Icon className="w-10 h-10 text-amber-500" />
                   </div>
