@@ -118,8 +118,27 @@ export async function POST(req: Request) {
             `,
         };
         
-        // Send email to owner only
-        await transporter.sendMail(ownerMailOptions);
+        // 2. Customer Auto-Reply Email
+        const customerMailOptions = {
+            from: `NK Financial <${process.env.EMAIL_USER}>`,
+            to: email,
+            subject: `Request Received - NK Financial`,
+            html: `
+                <div style="font-family: Arial, sans-serif; max-width: 600px; padding: 20px; color: #333;">
+                    <h2>Hi ${name},</h2>
+                    <p>Thank you for reaching out to NK Financial. We have received your request regarding <strong>${service}</strong>.</p>
+                    <p>Niranjan or a member of our team will contact you shortly at ${phone} to discuss how we can help you achieve your financial goals.</p>
+                    <br/>
+                    <p>Best regards,<br/><strong>NK Financial Team</strong></p>
+                </div>
+            `,
+        };
+        
+        // Send emails
+        await Promise.all([
+            transporter.sendMail(ownerMailOptions),
+            transporter.sendMail(customerMailOptions)
+        ]);
 
         // Append record to Google Sheets
         await appendToGoogleSheet({ name, email, phone, service });
