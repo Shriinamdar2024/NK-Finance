@@ -34,9 +34,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth overflow-x-hidden">
       <body 
-        className={`bg-[#FDFBF7] text-neutral-900 antialiased ${roboto.variable} ${poppins.variable}`}
+        className={`bg-[#FDFBF7] text-neutral-900 antialiased overflow-x-hidden ${roboto.variable} ${poppins.variable}`}
         style={{ fontFamily: '"Roboto", "Poppins", sans-serif' }}
       >
         {children}

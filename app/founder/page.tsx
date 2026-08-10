@@ -4,10 +4,10 @@ import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { 
-  Quote, 
-  MessageSquare, 
-  Phone, 
+import {
+  Quote,
+  MessageSquare,
+  Phone,
   CheckCircle2,
   Calendar
 } from "lucide-react";
@@ -15,7 +15,7 @@ import { motion } from "framer-motion";
 
 export default function FounderPage() {
   return (
-    <main className="min-h-screen bg-[#FDFBF7] text-neutral-900 antialiased overflow-hidden">
+    <main className="relative min-h-screen bg-[#FDFBF7] text-neutral-900 antialiased overflow-hidden">
       <Navbar />
 
       {/* Decorative Background Elements */}
@@ -24,21 +24,21 @@ export default function FounderPage() {
 
       <section className="relative pt-36 pb-24 max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-          
+
           {/* Left Side: Photo & Floating Badges */}
           <div className="lg:col-span-5 relative">
             <ScrollReveal direction="left" delay={0.1}>
               <div className="relative z-10 rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] border-[8px] border-white">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img 
-                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop" 
+                <img
+                  src="/foundernkc.png"
                   alt="Niranjan Khandekar"
                   className="w-full h-[600px] object-cover object-top"
                 />
-                
+
                 {/* Image Overlay Gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                
+
                 <div className="absolute bottom-8 left-8 right-8">
                   <p className="text-white font-extrabold text-3xl tracking-wide mb-1">Niranjan Khandekar</p>
                   <p className="text-amber-400 font-medium tracking-wider text-sm uppercase">Founder & Principal Advisor</p>
@@ -47,7 +47,7 @@ export default function FounderPage() {
             </ScrollReveal>
 
             {/* Floating Experience Badge */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.8, x: -20 }}
               animate={{ opacity: 1, scale: 1, x: 0 }}
               transition={{ delay: 0.6, type: "spring" }}
@@ -57,7 +57,7 @@ export default function FounderPage() {
                 <Calendar className="w-7 h-7 text-amber-500" />
               </div>
               <div>
-                <p className="text-3xl font-black text-neutral-900 leading-none">8+</p>
+                <p className="text-3xl font-black text-neutral-900 leading-none">4+</p>
                 <p className="text-xs font-bold text-neutral-500 uppercase tracking-widest mt-1">Years Experience</p>
               </div>
             </motion.div>
@@ -69,11 +69,11 @@ export default function FounderPage() {
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-50 border border-amber-200 text-amber-700 text-xs font-bold tracking-widest mb-6 shadow-sm">
                 MEET THE FOUNDER
               </div>
-              
+
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-neutral-900 tracking-tight leading-[1.1] mb-8">
                 Building trust through <span className="text-amber-500">transparency</span> & expertise.
               </h1>
-              
+
               <div className="space-y-6 text-neutral-600 text-lg leading-relaxed mb-12">
                 <p>
                   With over 8 years of dedicated experience in the Indian financial services sector, Niranjan Khandekar established NK Financial Consultancy with a singular, unwavering mission: to democratize access to honest, expert financial guidance for everyone.
@@ -90,9 +90,9 @@ export default function FounderPage() {
             <ScrollReveal direction="up" delay={0.4}>
               <div className="grid sm:grid-cols-2 gap-4 mb-12">
                 {[
-                  "Holistic Financial Partner", 
-                  "End-to-End Digital Process", 
-                  "No Hidden Charges", 
+                  "Holistic Financial Partner",
+                  "End-to-End Digital Process",
+                  "No Hidden Charges",
                   "Unbiased Expert Advice"
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-3 p-4 rounded-2xl bg-white border border-neutral-100 shadow-sm">
