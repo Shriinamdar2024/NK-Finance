@@ -43,9 +43,10 @@ export async function POST(req: Request) {
 
         // 2. Customer Auto-Reply Email (Pure Plain Text to avoid Spam filters)
         const customerMailOptions = {
-            from: `"Niranjan Khandekar" <${process.env.EMAIL_USER}>`,
+            from: process.env.EMAIL_USER, // Removed custom name wrapper, using raw email to prevent spoofing flags
+            replyTo: process.env.EMAIL_USER,
             to: email,
-            subject: `Re: Your inquiry regarding ${service}`,
+            subject: `Your inquiry regarding ${service}`, // Removed "Re:" which can flag spam on new threads
             text: `Hello ${name},
 
 Thank you for reaching out! I wanted to quickly confirm that I've received your request regarding ${service}.
