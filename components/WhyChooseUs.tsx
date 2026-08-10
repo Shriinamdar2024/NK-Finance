@@ -45,7 +45,7 @@ export default function WhyChooseUs() {
             </div>
 
             <Link
-              href="/about"
+              href="/founder"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-neutral-300 text-sm font-semibold text-neutral-600 hover:text-black hover:border-black transition-all group bg-white"
             >
               Meet the Founder

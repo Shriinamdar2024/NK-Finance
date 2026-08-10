@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Phone, Mail, MessageSquare, MapPin, Send } from "lucide-react";
+import { Phone, Mail, MessageSquare, MapPin, Send, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function ContactStatic() {
@@ -38,9 +38,7 @@ export default function ContactStatic() {
             if (result.success) {
                 setStatus("success");
                 setFormData({ name: "", phone: "", email: "", service: "Personal Loan" });
-                
-                // Reset success message after 5 seconds
-                setTimeout(() => setStatus("idle"), 5000);
+                // Removed the automatic 5 second timeout so the user can actually read the success message and click the WhatsApp button if they want to.
             } else {
                 console.error("API Error:", result);
                 setStatus("error");
@@ -125,12 +123,31 @@ export default function ContactStatic() {
                         className="p-6 md:p-10 rounded-3xl bg-white border border-neutral-200 shadow-xl relative overflow-hidden"
                     >
                         {status === "success" && (
-                            <div className="absolute inset-0 z-20 bg-white/90 backdrop-blur-sm flex flex-col items-center justify-center p-8 text-center animate-in fade-in duration-500">
-                                <div className="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center mb-4">
-                                    <Send className="w-8 h-8 text-emerald-500" />
+                            <div className="absolute inset-0 z-20 bg-white/95 backdrop-blur-md flex flex-col items-center justify-center p-8 text-center animate-in fade-in duration-500">
+                                <div className="w-20 h-20 rounded-full bg-emerald-100 border-4 border-emerald-50 flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(16,185,129,0.2)]">
+                                    <CheckCircle2 className="w-10 h-10 text-emerald-500" />
                                 </div>
-                                <h3 className="text-2xl font-bold text-neutral-900 mb-2">Request Sent!</h3>
-                                <p className="text-neutral-600">Niranjan will get back to you shortly.</p>
+                                <h3 className="text-3xl font-black text-neutral-900 tracking-tight mb-3">Request Received!</h3>
+                                <p className="text-neutral-600 font-medium mb-8 max-w-sm leading-relaxed">
+                                    Niranjan has successfully received your details and will personally call you within 24 hours to discuss your financial goals.
+                                </p>
+                                <div className="w-full h-px bg-neutral-200 mb-8 max-w-xs mx-auto" />
+                                <p className="text-xs text-neutral-500 font-bold uppercase tracking-wider mb-4">Need immediate assistance?</p>
+                                <a
+                                    href="https://wa.me/919373061520"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center justify-center gap-3 w-full max-w-xs py-4 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold transition-all shadow-lg hover:-translate-y-0.5 active:scale-95"
+                                >
+                                    <MessageSquare className="w-5 h-5" />
+                                    <span>WhatsApp Niranjan Now</span>
+                                </a>
+                                <button 
+                                    onClick={() => setStatus("idle")}
+                                    className="mt-6 text-sm font-medium text-neutral-400 hover:text-neutral-600 underline underline-offset-4"
+                                >
+                                    Submit another request
+                                </button>
                             </div>
                         )}
 

@@ -46,7 +46,7 @@ export default function Navbar() {
               alt="NK Financial Logo" 
               width={240} 
               height={75} 
-              className="object-contain h-10 md:h-14 w-auto" 
+              className="object-contain h-10 md:h-12 w-auto scale-[2] md:scale-[3] origin-left" 
               priority
             />
           </Link>

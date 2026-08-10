@@ -40,37 +40,13 @@ export async function POST(req: Request) {
                 </div>
             `,
         };
+        
+        // Send email to owner only
+        await transporter.sendMail(ownerMailOptions);
 
-        // 2. Customer Auto-Reply Email (Pure Plain Text to avoid Spam filters)
-        const customerMailOptions = {
-            from: process.env.EMAIL_USER, // Removed custom name wrapper, using raw email to prevent spoofing flags
-            replyTo: process.env.EMAIL_USER,
-            to: email,
-            subject: `Your inquiry regarding ${service}`, // Removed "Re:" which can flag spam on new threads
-            text: `Hello ${name},
-
-Thank you for reaching out! I wanted to quickly confirm that I've received your request regarding ${service}.
-
-I am currently reviewing your details and I will personally reach out to you shortly to discuss how we can help secure your financial future.
-
-If you need immediate assistance, please feel free to call me directly at +91 9373061520 or visit our office at Shop No- 5, Raghunath Bhuvan, Overseer Colony, Near Shiv Shakti Mandal, Sangli.
-
-Best regards,
-
-Niranjan Khandekar
-Founder & Principal Advisor
-NK Financial Consultancy`,
-        };
-
-        // Send both emails
-        await Promise.all([
-            transporter.sendMail(ownerMailOptions),
-            transporter.sendMail(customerMailOptions)
-        ]);
-
-        return NextResponse.json({ success: true, message: 'Emails dispatched successfully' });
-    } catch (error) {
-        console.error('Nodemailer Error:', error);
-        return NextResponse.json({ success: false, error: 'Failed to send emails' }, { status: 500 });
+            return NextResponse.json({ success: true, message: 'Emails dispatched successfully' });
+        } catch (error) {
+            console.error('Nodemailer Error:', error);
+            return NextResponse.json({ success: false, error: 'Failed to send emails' }, { status: 500 });
+        }
     }
-}
