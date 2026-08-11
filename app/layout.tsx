@@ -94,6 +94,33 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {process.env.NODE_ENV !== "development" && (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                document.addEventListener('contextmenu', event => event.preventDefault());
+                document.addEventListener('keydown', (e) => {
+                  if (e.keyCode === 123) { // F12
+                    e.preventDefault();
+                  }
+                  if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) { // Ctrl+Shift+I or J
+                    e.preventDefault();
+                  }
+                  if (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83)) { // Ctrl+U or S
+                    e.preventDefault();
+                  }
+                  // Mac equivalents
+                  if (e.metaKey && e.altKey && (e.keyCode === 73 || e.keyCode === 74)) { // Cmd+Option+I or J
+                    e.preventDefault();
+                  }
+                  if (e.metaKey && (e.keyCode === 85 || e.keyCode === 83)) { // Cmd+U or S
+                    e.preventDefault();
+                  }
+                });
+              `,
+            }}
+          />
+        )}
         {children}
       </body>
     </html>
