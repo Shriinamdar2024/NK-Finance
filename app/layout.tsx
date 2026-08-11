@@ -15,17 +15,68 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "NK Financial | Consultancy & Solutions",
+  title: {
+    default: "NK Financial | Expert Loan & Insurance Solutions",
+    template: "%s | NK Financial",
+  },
   description:
-    "NK Financial Consultancy and Solutions — trusted personal loans, business loans, insurance, and investment advisory by Niranjan Khandekar. Serving PAN India.",
-  keywords:
-    "personal loan, business loan, insurance, mutual funds, financial planning, NK Financial, Niranjan Khandekar",
+    "NK Financial Consultancy by Niranjan Khandekar. Get expert advice and instant approvals on Personal Loans, Business Loans, Home Loans, Insurance, and Mutual Funds.",
+  keywords: [
+    "NK Financial",
+    "Niranjan Khandekar",
+    "best personal loan consultant",
+    "business loan advisor India",
+    "home loan lowest interest rate",
+    "financial consultancy near me",
+    "term insurance plans",
+    "mutual fund advisor",
+    "fast business loan approval",
+    "financial planner",
+    "credit score consultation"
+  ],
+  authors: [{ name: "Niranjan Khandekar" }],
+  creator: "Niranjan Khandekar",
+  publisher: "NK Financial",
   openGraph: {
-    title: "NK Financial | Consultancy & Solutions",
+    title: "NK Financial | Expert Loan & Insurance Solutions",
     description:
-      "Trusted financial solutions tailored to your personal and business goals. Talk to Niranjan Khandekar today.",
+      "Trusted financial solutions tailored to your goals. Fast approvals for Personal and Business Loans. Talk to Niranjan Khandekar today.",
+    siteName: "NK Financial",
+    locale: "en_IN",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "NK Financial | Expert Loan & Insurance Solutions",
+    description: "Expert advice on Loans, Insurance, and Investments by Niranjan Khandekar.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FinancialService",
+  "name": "NK Financial",
+  "description": "Expert financial consultancy providing personal loans, business loans, and insurance solutions.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "IN"
+  },
+  "founder": {
+    "@type": "Person",
+    "name": "Niranjan Khandekar"
+  },
+  "telephone": "+919373061520"
 };
 
 export default function RootLayout({
@@ -39,6 +90,10 @@ export default function RootLayout({
         className={`bg-[#FDFBF7] text-neutral-900 antialiased overflow-x-hidden ${roboto.variable} ${poppins.variable}`}
         style={{ fontFamily: '"Roboto", "Poppins", sans-serif' }}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         {children}
       </body>
     </html>

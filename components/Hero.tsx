@@ -55,7 +55,7 @@ export default function Hero() {
         >
           <Link
             href="/founder"
-            className="w-full sm:w-auto px-8 py-4 rounded-2xl sm:rounded-full bg-black hover:bg-neutral-800 text-white font-semibold text-base transition-all duration-300 shadow-xl shadow-black/10 hover:shadow-2xl hover:-translate-y-1 text-center"
+            className="w-full sm:w-auto px-8 py-4 rounded-[6px] sm:rounded-[16px] bg-black hover:bg-neutral-800 text-white font-semibold text-base transition-all duration-300 shadow-xl shadow-black/10 hover:shadow-2xl hover:-translate-y-1 text-center"
           >
             Meet Our Founder
           </Link>
@@ -63,7 +63,7 @@ export default function Hero() {
             href="https://wa.me/919373061520"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto px-8 py-4 rounded-2xl sm:rounded-full bg-white/80 hover:bg-white backdrop-blur-sm border border-neutral-200/50 text-black font-semibold text-base transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2 group hover:-translate-y-1"
+            className="w-full sm:w-auto px-8 py-4 rounded-[6px] sm:rounded-[16px] bg-white/80 hover:bg-white backdrop-blur-sm border border-neutral-200/50 text-black font-semibold text-base transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2 group hover:-translate-y-1"
           >
             <span>Free Consultation</span>
             <ArrowUpRight className="w-5 h-5 text-neutral-600 group-hover:text-black transition-colors" />

@@ -34,7 +34,7 @@ export default function ContactStatic() {
 
             const result = await response.json();
             console.log("Mail API Response:", result);
-            
+
             if (result.success) {
                 setStatus("success");
                 setFormData({ name: "", phone: "", email: "", service: "Personal Loan" });
@@ -142,7 +142,7 @@ export default function ContactStatic() {
                                     <MessageSquare className="w-5 h-5" />
                                     <span>WhatsApp Niranjan Now</span>
                                 </a>
-                                <button 
+                                <button
                                     onClick={() => setStatus("idle")}
                                     className="mt-6 text-sm font-medium text-neutral-400 hover:text-neutral-600 underline underline-offset-4"
                                 >
@@ -160,9 +160,9 @@ export default function ContactStatic() {
                                     id="name"
                                     required
                                     value={formData.name}
-                                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                     className="w-full px-5 py-4 rounded-2xl bg-neutral-50 border border-neutral-200 text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all"
-                                    placeholder="John Doe"
+                                    placeholder="Sxxx Ixxx"
                                 />
                             </div>
 
@@ -174,9 +174,9 @@ export default function ContactStatic() {
                                     id="email"
                                     required
                                     value={formData.email}
-                                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                     className="w-full px-5 py-4 rounded-2xl bg-neutral-50 border border-neutral-200 text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all"
-                                    placeholder="john@example.com"
+                                    placeholder="Sxxx33@example.com"
                                 />
                             </div>
 
@@ -188,7 +188,7 @@ export default function ContactStatic() {
                                     id="phone"
                                     required
                                     value={formData.phone}
-                                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                                     className="w-full px-5 py-4 rounded-2xl bg-neutral-50 border border-neutral-200 text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all"
                                     placeholder="+91 00000 00000"
                                 />
@@ -200,7 +200,7 @@ export default function ContactStatic() {
                                     name="service"
                                     id="service"
                                     value={formData.service}
-                                    onChange={(e) => setFormData({...formData, service: e.target.value})}
+                                    onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                                     className="w-full px-5 py-4 rounded-2xl bg-neutral-50 border border-neutral-200 text-neutral-900 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all appearance-none"
                                 >
                                     <option value="Personal Loan">Personal Loan</option>
@@ -219,7 +219,7 @@ export default function ContactStatic() {
                                 <span>{status === "submitting" ? "Sending..." : "Request Callback"}</span>
                                 {status !== "submitting" && <Send className="w-4 h-4" />}
                             </button>
-                            
+
                             {status === "error" && (
                                 <p className="text-red-500 text-xs text-center mt-2 font-medium">Something went wrong. Please try again or use WhatsApp.</p>
                             )}
